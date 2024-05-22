@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,56 @@ class _MyChartState extends State<MyChart> {
     );
   }
 
+  BarChartGroupData makeGroupData(int x, double y) {
+    return BarChartGroupData(
+      x: x,
+      barRods: [
+        BarChartRodData(
+          toY: y,
+          width: 10,
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.tertiary,
+              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.primary,
+            ],
+            transform: const GradientRotation(pi / 4),
+          ),
+          backDrawRodData: BackgroundBarChartRodData(
+            show: true,
+            toY: 5,
+            color: Colors.grey.shade300,
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<BarChartGroupData> showingGroups() => List.generate(
+        8,
+        (index) {
+          switch (index) {
+            case 0:
+              return makeGroupData(0, 2);
+            case 1:
+              return makeGroupData(1, 3);
+            case 2:
+              return makeGroupData(2, 2);
+            case 3:
+              return makeGroupData(3, 4.5);
+            case 4:
+              return makeGroupData(4, 3.8);
+            case 5:
+              return makeGroupData(5, 1.5);
+            case 6:
+              return makeGroupData(6, 4);
+            case 7:
+              return makeGroupData(7, 3.8);
+            default:
+              return throw Error();
+          }
+        },
+      );
   BarChartData mainBarChart() {
     return BarChartData(
       titlesData: FlTitlesData(
@@ -25,9 +77,11 @@ class _MyChartState extends State<MyChart> {
             showTitles: false,
           ),
         ),
-        leftTitles: const AxisTitles(
+        leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
+            reservedSize: 38,
+            getTitlesWidget: leftTiles,
           ),
         ),
         topTitles: const AxisTitles(
@@ -43,6 +97,13 @@ class _MyChartState extends State<MyChart> {
           ),
         ),
       ),
+      borderData: FlBorderData(
+        show: false,
+      ),
+      gridData: const FlGridData(
+        show: false,
+      ),
+      barGroups: showingGroups(),
     );
   }
 
@@ -89,16 +150,16 @@ class _MyChartState extends State<MyChart> {
   Widget leftTiles(double value, TitleMeta meta) {
     const style = TextStyle(
         color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14);
-    String text = '';
+    String text;
     if (value == 0) {
       text = 'BDT 2k';
-    } else if (value == 1) {
-      text = 'BDT 3k';
     } else if (value == 2) {
-      text = 'BDT 4k';
+      text = 'BDT 3k';
     } else if (value == 3) {
-      text = 'BDT 5k';
+      text = 'BDT 4k';
     } else if (value == 4) {
+      text = 'BDT 5k';
+    } else if (value == 5) {
       text = 'BDT 6k';
     } else {
       return Container();
