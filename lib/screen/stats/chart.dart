@@ -79,7 +79,7 @@ class _MyChartState extends State<MyChart> {
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
-            showTitles: false,
+            showTitles: true,
             reservedSize: 38,
             getTitlesWidget: leftTiles,
           ),
@@ -152,15 +152,15 @@ class _MyChartState extends State<MyChart> {
         color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14);
     String text;
     if (value == 0) {
-      text = 'BDT 2k';
+      text = '1k';
     } else if (value == 2) {
-      text = 'BDT 3k';
+      text = '2k';
     } else if (value == 3) {
-      text = 'BDT 4k';
+      text = '3k';
     } else if (value == 4) {
-      text = 'BDT 5k';
+      text = '4k';
     } else if (value == 5) {
-      text = 'BDT 6k';
+      text = '5k';
     } else {
       return Container();
     }
