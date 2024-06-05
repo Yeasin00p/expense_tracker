@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:expense_tracker/screen/home/add_expences/views/add_expense.dart';
 import 'package:expense_tracker/screen/home/views/main_screen.dart';
 import 'package:expense_tracker/screen/stats/stats.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 CupertinoIcons.graph_square_fill,
-                   color: index == 1 ? selectedColor : unSelectedColor,
+                color: index == 1 ? selectedColor : unSelectedColor,
               ),
               label: 'Stats',
             ),
@@ -54,7 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddExpense(),
+            ),
+          );
+        },
         shape: const CircleBorder(),
         child: Container(
           width: 60,

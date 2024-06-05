@@ -24,7 +24,7 @@ class _MyChartState extends State<MyChart> {
       barRods: [
         BarChartRodData(
           toY: y,
-          width: 10,
+          width: 16,
           gradient: LinearGradient(
             colors: [
               Theme.of(context).colorScheme.tertiary,
