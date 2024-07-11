@@ -1,6 +1,6 @@
-import 'dart:math';
 import 'package:expense_tracker/screen/home/add_expences/views/add_expense.dart';
 import 'package:expense_tracker/screen/home/views/main_screen.dart';
+import 'package:expense_tracker/screen/home/views/widget/floating_action_button_widget.dart';
 import 'package:expense_tracker/screen/stats/stats.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
@@ -54,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
+      floatingActionButton: FloatingActionButtonWidget(
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -63,25 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
-        shape: const CircleBorder(),
-        child: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              colors: [
-                Theme.of(context).colorScheme.tertiary,
-                Theme.of(context).colorScheme.secondary,
-                Theme.of(context).colorScheme.primary,
-              ],
-              transform: const GradientRotation(pi / 4),
-            ),
-          ),
-          child: const Icon(
-            CupertinoIcons.add,
-          ),
-        ),
       ),
       body: index == 0 ? const MainScreen() : const StatsScreen(),
     );

@@ -33,7 +33,7 @@ class StatsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 21),
-              child: MyChart(),
+              child: const MyChart(),
             ),
           ],
         ),
